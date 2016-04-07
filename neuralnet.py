@@ -78,6 +78,24 @@ def part_b_2():
         pass
 
 
+def part_b_3():
+    trainfile = 'sonar.arff'
+    num_folds = 10
+    learning_rate = 0.1
+    num_epochs = 50
+
+    data_rows, class_label = read_file(trainfile)
+
+    stratified_data_rows = n_fold_stratified(num_folds, data_rows, class_label)
+
+    network = Network(len(data_rows[0]) - 1, class_label, learning_rate)
+
+    output = network.cross_validation(stratified_data_rows, num_epochs)
+
+    roc(output, data_rows, class_label)
+
+
 # main()
-part_b_1()
+# part_b_1()
 # part_b_2()
+part_b_3()
