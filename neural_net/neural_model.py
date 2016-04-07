@@ -56,7 +56,6 @@ class Network:
 
         return predict_label, output
 
-
     def cross_validation(self, stratified_data_rows, num_epochs):
         output = {}
 
