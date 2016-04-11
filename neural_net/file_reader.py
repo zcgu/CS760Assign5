@@ -8,8 +8,8 @@ def read_file(trainfile):
 
     data = arff.load(open(trainfile, 'rb'))
 
-    for row in data['data']:
-        data_rows.append(row)
+    for i in range(0, len(data['data'])):
+        data_rows.append((data['data'][i], i))
 
     for attribute in data['attributes']:
         if attribute[0].lower() == 'class':
@@ -20,13 +20,13 @@ def read_file(trainfile):
 
 def n_fold_stratified(n, data_rows, class_label):
     total_rows = len(data_rows)
-    row_length = len(data_rows[0])
+    row_length = len(data_rows[0][0])
 
     data_rows_label_0 = []
     data_rows_label_1 = []
 
     for row in data_rows:
-        if row[row_length - 1].lower() == class_label[0].lower():
+        if row[0][row_length - 1].lower() == class_label[0].lower():
             data_rows_label_0.append(row)
         else:
             data_rows_label_1.append(row)

@@ -1,8 +1,8 @@
 
 def accuracy(output, data_rows):
     correct = 0.
-    for row in data_rows:
-        if output[str(row)][1].lower() == output[str(row)][2].lower():
+    for i in range(0, len(data_rows)):
+        if output[i][1].lower() == output[i][2].lower():
             correct += 1
     # print correct
     # print len(output)
@@ -12,8 +12,8 @@ def accuracy(output, data_rows):
 
 def roc(output, data_rows, class_label):
     output_list = []
-    for item in data_rows:
-        output_list.append(output[str(item)])
+    for i in range(0, len(data_rows)):
+        output_list.append(output[i])
     # print output_list
 
     output_list = sorted(output_list, key=lambda output_item: output_item[3], reverse= True)
@@ -55,5 +55,5 @@ def roc(output, data_rows, class_label):
         plt.ylabel('true positive')
         plt.title('ROC curve')
         plt.show()
-    except:
+    finally:
         pass

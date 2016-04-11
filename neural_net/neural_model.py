@@ -75,10 +75,10 @@ class Network:
 
             for epoch in range(0, num_epochs):
                 for row in traning_rows:
-                    self.train(row)
+                    self.train(row[0])
 
             for row in testing_rows:
-                predict_label, confidence_of_prediction = self.predict(row)
-                output[str(row)] = (i, predict_label, row[-1], confidence_of_prediction)
+                predict_label, confidence_of_prediction = self.predict(row[0])
+                output[row[1]] = (i, predict_label, row[0][-1], confidence_of_prediction)
 
         return output

@@ -12,13 +12,13 @@ def main():
 
     stratified_data_rows = n_fold_stratified(num_folds, data_rows, class_label)
 
-    network = Network(len(data_rows[0]) - 1, class_label, learning_rate)
+    network = Network(len(data_rows[0][0]) - 1, class_label, learning_rate)
 
     output = network.cross_validation(stratified_data_rows, num_epochs)
 
-    for row in data_rows:
-        print str(output[str(row)][0]) + ' ' + output[str(row)][1].encode("ascii") \
-              + ' ' + output[str(row)][2].encode("ascii") + ' ' + str(output[str(row)][3])
+    for i in range(0, len(data_rows)):
+        print str(output[i][0]) + ' ' + output[i][1].encode("ascii") \
+              + ' ' + output[i][2].encode("ascii") + ' ' + str(output[i][3])
 
 
 def part_b_1():
@@ -34,7 +34,7 @@ def part_b_1():
 
         stratified_data_rows = n_fold_stratified(num_folds, data_rows, class_label)
 
-        network = Network(len(data_rows[0]) - 1, class_label, learning_rate)
+        network = Network(len(data_rows[0][0]) - 1, class_label, learning_rate)
 
         output = network.cross_validation(stratified_data_rows, epoch)
         accuracys.append(accuracy(output, data_rows))
@@ -46,7 +46,7 @@ def part_b_1():
         plt.xlabel('epochs')
         plt.ylabel('accuracy')
         plt.show()
-    except:
+    finally:
         pass
 
 
@@ -62,7 +62,7 @@ def part_b_2():
 
         stratified_data_rows = n_fold_stratified(fold, data_rows, class_label)
 
-        network = Network(len(data_rows[0]) - 1, class_label, learning_rate)
+        network = Network(len(data_rows[0][0]) - 1, class_label, learning_rate)
 
         output = network.cross_validation(stratified_data_rows, num_epochs)
         accuracys.append(accuracy(output, data_rows))
@@ -74,7 +74,7 @@ def part_b_2():
         plt.xlabel('folds')
         plt.ylabel('accuracy')
         plt.show()
-    except:
+    finally:
         pass
 
 
@@ -88,14 +88,14 @@ def part_b_3():
 
     stratified_data_rows = n_fold_stratified(num_folds, data_rows, class_label)
 
-    network = Network(len(data_rows[0]) - 1, class_label, learning_rate)
+    network = Network(len(data_rows[0][0]) - 1, class_label, learning_rate)
 
     output = network.cross_validation(stratified_data_rows, num_epochs)
 
     roc(output, data_rows, class_label)
 
 
-# main()
+main()
 # part_b_1()
 # part_b_2()
-part_b_3()
+# part_b_3()
